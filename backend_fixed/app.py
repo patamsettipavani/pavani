@@ -6,7 +6,7 @@ from extensions import db, jwt, cors
 def create_app() -> Flask:
     app = Flask(__name__)
     app.config.from_object(Config)
-    
+
     try:
         os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
     except Exception:
@@ -27,14 +27,7 @@ def create_app() -> Flask:
     app.register_blueprint(interview_bp)
     app.register_blueprint(dashboard_bp)
     app.register_blueprint(coding_bp)
-    app.register_blueprint(coding_bp)
 
-    # ✅ Ikkada pettu
-    CORS(app, origins=["https://frontend-2-gold-chi.vercel.app", "https://frontend-2-7zo4ms8bi-pavani-ab70.vercel.app"], supports_credentials=True)
-
-    with app.app_context():
-    # FIX: Vercel lo db.create_all() vaddu - timeout vastundi
-    # So try-except lo pettali
     with app.app_context():
         import models
         try:
@@ -58,5 +51,3 @@ def create_app() -> Flask:
     return app
 
 app = create_app()
- 
-  
