@@ -14,7 +14,7 @@ def create_app() -> Flask:
 
     db.init_app(app)
     jwt.init_app(app)
-    cors.init_app(app, resources={r"/api/*": {"origins": "*"}})
+    cors.init_app(app, resources={r"/api/*": {"origins": ["https://frontend-2-gold-chi.vercel.app", "https://frontend-2-7zo4ms8bi-pavani-ab70.vercel.app", "http://localhost:3000", "http://localhost:5173"]}}, supports_credentials=True)
 
     from routes.auth_routes import auth_bp
     from routes.resume_routes import resume_bp
@@ -57,18 +57,6 @@ def create_app() -> Flask:
 
     return app
 
-
 app = create_app()
-def create_app():
-    app = Flask(__name__)
-    
-    # ✅✅✅ IDI ADD CHEY - LINKING CODE ✅✅✅
-    CORS(app, origins=[
-        "https://frontend-2-gold-chi.vercel.app",
-        "https://frontend-2-7zo4ms8bi-pavani-ab70.vercel.app",
-        "http://localhost:3000",
-        "http://localhost:5173"
-    ], supports_credentials=True)
-
-    app.config.from_object(Config)
-    # ... migilina code ala ne undani
+ 
+  
